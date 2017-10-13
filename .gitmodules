@@ -1,0 +1,18 @@
+[submodule "container/wp/html/assets/plugins/i18n-conductor"]
+	path = container/wp/html/assets/plugins/i18n-conductor
+	url = git@github.com:cinra/i18n-conductor.git
+[submodule "container/wp/html/assets/plugins/wp-metatag-builder"]
+	path = container/wp/html/assets/plugins/wp-metatag-builder
+	url = git@github.com:cinra/wp-metatag-builder.git
+[submodule "container/wp/html/assets/plugins/wp-redirect-conductor"]
+	path = container/wp/html/assets/plugins/wp-redirect-conductor
+	url = git@github.com:cinra/wp-redirect-conductor.git
+[submodule "container/wp/html/assets/plugins/wp-search-date"]
+	path = container/wp/html/assets/plugins/wp-search-date
+	url = git@github.com:cinra/wp-search-date.git
+[submodule "container/wp/html/assets/plugins/wp-search-index"]
+	path = container/wp/html/assets/plugins/wp-search-index
+	url = git@github.com:cinra/wp-search-index.git
+[submodule "container/wp/html/assets/plugins/wp-simple-api"]
+	path = container/wp/html/assets/plugins/wp-simple-api
+	url = git@github.com:cinra/wp-simple-api.git

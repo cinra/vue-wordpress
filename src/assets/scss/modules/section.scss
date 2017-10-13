@@ -1,0 +1,18 @@
+.section {
+  margin-bottom: 120px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+/**
+ * mobile
+ */
+@include mobile {
+
+  .section {
+    margin-bottom: 60px;
+  }
+}

@@ -1,0 +1,32 @@
+.l-footer {
+  font-size: 12px;
+  color: #fff;
+  background: #333;
+}
+
+.l-footer__inner {
+  padding: 40px 100px;
+}
+
+.l-footer__links {
+  margin-bottom: 60px;
+}
+
+.l-footer__links__list {
+  display: flex;
+
+  li {
+    margin-right: 10px;
+  }
+
+  a {
+    color: #fff;
+  }
+}
+
+/**
+ * mobile
+ */
+@include mobile {
+
+}

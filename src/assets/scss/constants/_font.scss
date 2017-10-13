@@ -1,0 +1,54 @@
+/**
+ * Google fonts - Raleway
+ */
+
+
+/**
+ * Google fonts - Noto Sans JP Light
+ */
+@font-face {
+   font-family: 'Noto Sans JP Thin';
+   font-style: normal;
+   font-weight: 100;
+   src: local("Noto Sans CJK JP"),
+        url('//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Thin.woff2') format('woff2'),
+        url('//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Thin.woff') format('woff'),
+        url('//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Thin.otf') format('opentype');
+}
+
+
+/**
+ * Google fonts - Noto Sans JP Light
+ */
+@font-face {
+   font-family: 'Noto Sans JP Light';
+   font-style: normal;
+   font-weight: 400;
+   src: local("Noto Sans CJK JP"),
+        url('//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Light.woff2') format('woff2'),
+        url('//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Light.woff') format('woff'),
+        url('//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Light.otf') format('opentype');
+}
+
+
+/**
+ * Google fonts - Noto Sans JP Bold
+ */
+@font-face {
+   font-family: 'Noto Sans JP Bold';
+   font-style: normal;
+   font-weight: 400;
+   src: local("Noto Sans CJK JP"),
+        url('//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Bold.woff2') format('woff2'),
+        url('//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Bold.woff') format('woff'),
+        url('//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Bold.otf') format('opentype');
+}
+
+$font_noto_thin: 'Noto Sans JP Thin', sans-serif;
+$font_noto_light: 'Noto Sans JP Light', sans-serif;
+$font_noto_bold: 'Noto Sans JP Bold', sans-serif;
+$font_raleway: 'Raleway', sans-serif; // thin=100, bold=700
+
+$font_default: $font_noto_light, 'Yu Gothic', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', sans-serif;
+$font_ie: 'Meiryo', Helvetica, Arial, 'ＭＳ Ｐゴシック', sans-serif;
+$font_tablet: 'Hiragino Kaku Gothic ProN', 'Meiryo', Helvetica, Arial, 'ＭＳ Ｐゴシック', sans-serif;
