@@ -2,20 +2,22 @@ import vue from 'Vue'
 import vuex from 'Vuex'
 import VueResource from 'vue-resource'
 
+const WP = window.WP_API_Settings || {};
+
 /**
  * Setting
  */
-vue.use(vuex);
+vue.use(vuex)
 vue.use(VueResource)
 
 /**
- * Interceptor
- * リクエスト前の処理を定義（DEMOでは、WPからnonceを渡していない為、省略）
+ * HTTP Interceptor
+ * リクエスト前の処理を定義
  */
-// vue.http.interceptors.push((request, next) => {
-//   request.headers.set('X-WP-Nonce', window.WP_API_Settings.nonce);
-//   next();
-// });
+vue.http.interceptors.push((request, next) => {
+  request.headers.set('X-WP-Nonce', WP.nonce || '');
+  next();
+});
 
 
 /**
@@ -41,7 +43,8 @@ const state = {
       "twitter:image": `${ location.origin }/assets/themes/v4_spa/img/og.png`
     }
   },
-  posts: ''
+  posts: '',
+  fetchData: ''
 };
 
 const getters = {
@@ -89,18 +92,63 @@ const getters = {
 };
 
 const actions = {
+  fetch(context, payload) {
+    return new Promise((resolve, reject) => {
+      const _to = payload.to || {};
+      const _query = payload.query || _to.query;
+
+      (async () => {
+        return await vue.http.get(`${ WP.root }wp/v2${ payload.endpoint }`, { params: _query }, {})
+      })().then(response => {
+        const _body = response.body instanceof Array ? response.body : [response.body];
+        context.commit('saveFetchData', _body);
+
+        resolve(response.body);
+      }, response => {
+
+        reject();
+      })
+    })
+  },
   fetchPosts(context, payload) {
     return new Promise((resolve, reject) => {
       const _to = payload.to || {};
+      const _d = {};
+
+      console.log(_to);
+
+      /**
+       * パラメータに「preview=true」が存在している場合は、投稿IDで取得処理を行う事で公開前のプレビューに対応
+       */
+      if(_to.query['preview']) {
+        const _id = String(_to.query['preview_id'] || _to.query['p']).match(/^[0-9]+$/);
+        _d.post_id = _id instanceof Array ? _id[0] : '';
+      } else {
+        if(_to.params['slug']) {
+          _to.query['slug'] = _to.params['slug'];
+        }
+      }
+
+      _d.query = _to.query;
+
+      /**
+       * リクエスト処理
+       */
       const req = {
-        'public': () => {
-          return new Promise(resolve => { vue.http.get('/wp-json/wp/v2/posts', { params: _to.query }, {}).then(response => { resolve(response) }) })
+        'posts': (opt = {}) => {
+          const d = {
+            q: opt['query'] || '',
+            post_id: opt['post_id'] || '',
+          };
+          return new Promise(resolve => { vue.http.get(`${ WP.root }wp/v2/posts/${ d.post_id }`, { params: d.q }, {}).then(response => { resolve(response) }) })
         },
       };
 
+      /**
+       * 記事データ取得
+       */
       (async () => {
-        // 記事情報取得
-        const resp = await req['public']();
+        const resp = await req['posts'](_d);
         const data = {
           body: resp.body || {},
           headers: resp.headers || {}
@@ -109,6 +157,10 @@ const actions = {
         return data;
       })().then(response => {
         const _body = response.body instanceof Array ? response.body : [response.body];
+
+        console.log('vuex: body');
+        console.log(_body);
+
         context.commit('savePosts', _body);
         resolve(_body);
 
@@ -123,6 +175,9 @@ const actions = {
 const mutations = {
   savePosts(state, data) {
     state.posts = data;
+  },
+  saveFetchData(state, data) {
+    state.fetchData = data;
   },
 };
 

@@ -1,8 +1,8 @@
 <template>
   <div class="l-about">
-    <h1 class="heading-primary">ABOUT</h1>
+    <h1 class="heading-primary">{{ title }}</h1>
 
-    <p>固定ページ</p>
+    <div class="wysiwyg" v-html="content"></div>
   </div>
 </template>
 
@@ -13,12 +13,14 @@
   export default {
     name: 'page-about',
     beforeRouteEnter(to, from, next) {
-      store.dispatch('fetch', { to: to, endpoint: '/pages', query: {slug: 'about'}, isMeta: true }).then(()=>{
+      store.dispatch('fetch', { to: to, endpoint: '/pages', query: { slug: 'sample-page' } }).then(()=>{
         next();
       });
     },
     data: () => {
       return {
+        title: '',
+        content: ''
       }
     },
     head: {
@@ -35,6 +37,11 @@
       }
     },
     created: function() {
+      if(this.$store.state.fetchData[0]) {
+        this.title = this.$store.state.fetchData[0].title.rendered;
+        this.content = this.$store.state.fetchData[0].content.rendered;
+      }
+      console.log(store.state.fetchData);
     },
     methods: {
     }

@@ -4,13 +4,33 @@
 
 - Docker for Mac
 
-### Setting
+## Development
 
-### Stop
+- Node.js >= 6.11.0
+- gulp
+
+## Setting
+
+### Setup
+
+Copy `./src/config/_config.default.json` and rename it to `config.default.json`.
+
+### NPM Install
 
 ```sh
-$ bin/c dc stop
+$ cd src/
+$ npm i
 ```
+
+### Watch (Start)
+
+```sh
+$ gulp
+```
+
+### Other Setting
+
+`./src/gulp/tasks`
 
 ---
 

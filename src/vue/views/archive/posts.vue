@@ -65,7 +65,6 @@
     },
     data: () => {
       return {
-        imageLoadedControl: false,
         isSort: false,
         pages: [],
         addparams: "",
@@ -154,11 +153,6 @@
       getPageCurrent() {
         return this.$store.state.pageCurrent;
       },
-
-      imageLoaded: function() {
-        //this.imageLoadedControl = true
-        // const result = image.isLoaded ? 'loaded' : 'broken';
-      }
     }
   }
 </script>

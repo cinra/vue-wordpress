@@ -36,12 +36,12 @@
   export default {
     name: 'single-post',
     beforeRouteEnter(to, from, next) {
-      store.dispatch('fetchPosts', { to: to , isMeta: true }).then(()=>{
+      store.dispatch('fetchPosts', { to: to }).then(()=>{
         next();
       })
     },
     beforeRouteUpdate(to, from, next) {
-      store.dispatch('fetchPosts', { to: to , isMeta: true }).then(()=>{ next() })
+      store.dispatch('fetchPosts', { to: to }).then(()=>{ next() })
     },
     head: {
       title: function() {
