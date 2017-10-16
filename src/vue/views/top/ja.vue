@@ -30,17 +30,30 @@
   import { store } from '../../store'
 
   // Components
+  import Post from '../single/post.vue'
 
   export default {
     name: 'page-top',
     beforeRouteEnter(to, from, next) {
-      (async () => {
+      /**
+       * プレビューでリクエストがあった場合の処理
+       */
+      if(to.query['preview']) {
+        const _postType = to.query['post_type'] || 'news'; // カスタム投稿タイプへの対応
 
-        const p = await store.dispatch('fetchPosts', { to: to });
-        return p;
-      })().then((response) => {
-        next();
-      })
+        /**
+         * postのidが正常にセットされている場合は、記事詳細コンポーネントに移す
+         */
+        if(to.query['preview_id'] || to.query['p']) {
+          next({ path: `${ _postType }/${ to.query['preview_id'] || to.query['p'] }`, component: Post, query: to.query })
+        } else {
+          next();
+        }
+      } else {
+        store.dispatch('fetchPosts', { to: to }).then(() => {
+          next();
+        })
+      }
     },
     components: {
     },

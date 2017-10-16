@@ -39,7 +39,7 @@ const router = new VueRouter({
      */
 
     // TOP
-    { path: '/',
+    { path: '/:preview?',
       component: Top },
 
     // PAGE
