@@ -39,6 +39,9 @@
             }, {
               'to': '/news',
               'name': 'NEWS'
+            }, {
+              'to': '/contact',
+              'name': 'CONTACT'
             }]
           ,
           'en': [{

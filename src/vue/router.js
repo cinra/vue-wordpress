@@ -11,6 +11,8 @@ import Top from './views/top/ja.vue'
 import Posts from './views/archive/posts.vue'
 import Post from './views/single/post.vue'
 import About from './views/page-about.vue'
+import Contact from './views/contact/inquiry.vue'
+import ContactComp from './views/contact/complete.vue'
 import NotFound from './views/page-notfound.vue'
 
 
@@ -39,12 +41,18 @@ const router = new VueRouter({
      */
 
     // TOP
-    { path: '/:preview?',
+    { path: '/',
       component: Top },
 
     // PAGE
     { path: '/about',
       component: About },
+
+    // CONTACT
+    { path: '/contact/complete',
+      component: ContactComp },
+    { path: '/contact',
+      component: Contact },
 
     // POSTS (ARCHIVE)
     /**

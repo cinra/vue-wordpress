@@ -7,7 +7,8 @@ function my_enqueue_scripts() {
     wp_localize_script( 'app', 'WP_API_Settings', array(
         'root' => esc_url_raw( rest_url() ),
         'nonce' => wp_create_nonce( 'wp_rest' ),
-        'nonce_postman' => wp_create_nonce( 'the-postman' )
+        'nonce_postman' => wp_create_nonce( 'the-postman' ),
+        'nonce_wpcf7' => wpcf7_create_nonce()
     ) );
 }
 add_action( 'wp_enqueue_scripts', 'my_enqueue_scripts' );

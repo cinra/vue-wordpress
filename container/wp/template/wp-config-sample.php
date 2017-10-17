@@ -90,6 +90,10 @@ define('WP_CONTENT_URL', 'http://'.$_SERVER["HTTP_HOST"].'/assets');
 // CINRA Wordpress Package
 define('CWP_PROJECT_NAME', $_ENV['WP_DB_HOST']);
 
+// ContactForm 7 4.9以降デフォルトで無効のため、明示的に指定
+// https://contactform7.com/ja/2017/08/18/contact-form-7-49/
+define ('WPCF7_VERIFY_NONCE', true);
+
 /* 編集が必要なのはここまでです ! WordPress でブログをお楽しみください。 */
 
 /** Absolute path to the WordPress directory. */

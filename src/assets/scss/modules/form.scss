@@ -1,0 +1,71 @@
+.form {
+  width: 600px;
+  margin: 0 auto 60px;
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 20px;
+    background: #f7f7f7;
+    box-sizing: border-box;
+
+    &[readonly] {
+      color: #000;
+      font-weight: bold;
+      background: 0;
+      @include placeholder() {
+        color: transparent;
+      };
+    }
+  }
+
+  input {
+    font-size: 12px;
+    height: 40px;
+  }
+
+  textarea {
+    height: 120px;
+  }
+}
+
+.form__field {
+  margin-bottom: 40px;
+}
+
+.form__head {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.form__content {
+
+}
+
+.form__item {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 20px;
+
+  p {
+    margin-bottom: 20px;
+  }
+}
+
+.form__submit {
+  display: flex;
+  justify-content: space-between;
+
+  &.is-confirm {
+    button {
+      flex-basis: calc(50% - 20px);
+    }
+  }
+}
+
+/**
+ * mobile
+ */
+@include mobile {
+
+}

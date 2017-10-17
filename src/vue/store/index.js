@@ -44,7 +44,9 @@ const state = {
     }
   },
   posts: '',
-  fetchData: ''
+  fetchData: '',
+  formState: 0,
+  formData: {}
 };
 
 const getters = {
@@ -68,6 +70,25 @@ const getters = {
     });
 
     return _result;
+  },
+  form2json: state => (f) => {
+    var fs = f.querySelectorAll("input,select,textarea") ;
+    var ret = {} ;
+    Array.prototype.forEach.call(fs,function(e) {
+        if(e.type=="radio"){
+            if(e.checked) ret[e.name] = e.value; 
+            else if(ret[e.name]==undefined) ret[e.name] = null ;
+        } else if(e.type=="checkbox") {
+            if(!ret[e.name]) ret[e.name] = {} ;
+            ret[e.name][e.value] = e.checked ;
+        } else {
+            ret[e.name] = e.value ;
+        }
+    });
+    return ret ;
+  },
+  getSerializeData: state => (form) => {
+    if(!form||form.nodeName!=="FORM"){return }var i,j,q=[];for(i=form.elements.length-1;i>=0;i=i-1){if(form.elements[i].name===""){continue}switch(form.elements[i].nodeName){case"INPUT":switch(form.elements[i].type){case"text":case"hidden":case"password":case"button":case"reset":case"submit":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"checkbox":case"radio":if(form.elements[i].checked){q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value))}break;case"file":break}break;case"TEXTAREA":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"SELECT":switch(form.elements[i].type){case"select-one":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"select-multiple":for(j=form.elements[i].options.length-1;j>=0;j=j-1){if(form.elements[i].options[j].selected){q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].options[j].value))}}break}break;case"BUTTON":switch(form.elements[i].type){case"reset":case"submit":case"button":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break}break}}return q.join("&")
   },
   getFormatDate: state => (date, format) => {
     const _tmp = typeof date === 'string' ? date : String(_tmp);
@@ -179,6 +200,13 @@ const mutations = {
   saveFetchData(state, data) {
     state.fetchData = data;
   },
+  saveFormState(state, data) {
+    if(typeof data !== 'number') {console.log('test'); return;}
+    state.formState = data;
+  },
+  saveFormData(state, data) {
+    state.formData = data;
+  }
 };
 
 export const store = new vuex.Store({
