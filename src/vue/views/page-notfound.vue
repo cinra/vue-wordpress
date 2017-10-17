@@ -34,6 +34,8 @@
         } else {
           next();
         }
+      } else {
+        next();
       }
     },
     data: () => {

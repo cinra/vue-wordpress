@@ -59,12 +59,12 @@ const router = new VueRouter({
      * 動的ルートマッチング
      * https://router.vuejs.org/ja/essentials/dynamic-matching.html
      */
+    // POST (DETAIL)
     { path: '/news',
       component: Posts },
-
-    // POST (DETAIL)
-    { path: '/news/:slug?',
+    { path: '/news/:slug',
       component: Post },
+
 
     // 404 NOT FOUND
     { path: '*:preview?',

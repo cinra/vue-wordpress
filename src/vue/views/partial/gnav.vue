@@ -3,12 +3,8 @@
     <ul>
       <li v-for="route in navItems[$store.state.language]"
           v-bind:key="route"
-          v-show="isGnavActive"
         >
-        <div class="gnav__linkList__item" ref="gnavItem">
-          <router-link :to="route.to" v-if="!route.to.match(/mailto/)">{{route.name}}</router-link>
-          <a :href="route.to" v-else>{{route.name}}</a>
-        </div>
+        <router-link :to="route.to">{{route.name}}</router-link>
       </li>
     </ul>
   </nav>

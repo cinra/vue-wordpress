@@ -41,7 +41,8 @@
   export default {
     name: 'archive-posts',
     beforeRouteEnter(to, from, next) {
-      store.dispatch('fetchPosts', { to: to, requests: ['categories'] }).then(()=>{ next() })
+      console.log(to);
+      store.dispatch('fetchPosts', { to: to }).then(()=>{ next() })
     },
     beforeRouteUpdate(to, from, next){
       store.dispatch('fetchPosts', { to: to }).then(()=>{ next() })

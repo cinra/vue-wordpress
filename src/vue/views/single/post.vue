@@ -36,11 +36,15 @@
   export default {
     name: 'single-post',
     beforeRouteEnter(to, from, next) {
+      console.log(to);
+
       store.dispatch('fetchPosts', { to: to }).then(()=>{
         next();
       })
     },
     beforeRouteUpdate(to, from, next) {
+      console.log(to);
+
       store.dispatch('fetchPosts', { to: to }).then(()=>{ next() })
     },
     head: {

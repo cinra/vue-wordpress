@@ -1,3 +1,14 @@
+<style lang="scss" scoped>
+  .component-fade-enter-active {
+    transition: .6s 0s ease-in;
+  }
+
+  .component-fade-enter,
+  .component-fade-leave-to {
+    opacity: 0;
+  }
+</style>
+
 <template>
   <div id="app">
 
